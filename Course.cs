@@ -16,7 +16,8 @@ class Course(string name, int maxSeats)
         }
         else
         {
-            Console.WriteLine("Kursen är tyvärr full. ")
+            Console.WriteLine("Tyvärr så finns det inga lediga platser. ");
+            return false;
         }
 
 

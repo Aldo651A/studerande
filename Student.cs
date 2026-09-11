@@ -24,11 +24,28 @@ class Student(string name)
         // gå med i samma kurs flera gånger.
         if (!courses.Contains(coursesToJoin))
         {
-            //Här läggs kursen till stdentens lisa 
-            courses.Add(coursesToJoin);
-            //// och sedan meddelar man kursen att studenten har gått med.
-            coursesToJoin.Enroll(this);
+            // Här kontrollerar metoden om studenten får plats
+            // och om stdenten redan går kursen
+            // När detta har kontrollerat skickas ett svar tillbaka som true/false
+            bool fickViPlats = coursesToJoin.Enroll(this);
+
+            // Här sparas svaret från ovan true/false
+            // Ifall studenten lyckas registrera sig blir det true 
+            // om inte false
+            if (fickViPlats)
+            {  
+                // Om svaret är true då kommer kursen att läggas till i 
+                // studentens lista. Samt får grattis meddelandet.
+                courses.Add(coursesToJoin);
+                Console.WriteLine("Grattis, du är intagen och inregistrerad. ");
+            }
+            else
+            {
+                // om det är false så så får han meddelandet här nedanför.
+                Console.WriteLine("Tyvärr du kom inte in, kursen är fulltsatt. ");
+            }
         }
+                 
     }
     //Detta betyder att vi kan starta anropa metoden från andra klasser
     // Men eftersom vi har använt void så returnerar metoden ingeting när vi anropar den.
