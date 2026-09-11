@@ -1,5 +1,7 @@
 using System.ComponentModel;
-
+// Detta kallas för primary constructer och här skapar vi Course.
+// För att skicka in namne gör vi detta me string och antalet platser med int.
+// eftersom int kontrolerar antal.
 class Course(string name, int maxSeats)
 {
     public string Name = name;
@@ -18,17 +20,30 @@ class Course(string name, int maxSeats)
         {
             Console.WriteLine("Tyvärr så finns det inga lediga platser. ");
             return false;
+        }  
+    }
+    public bool UnEnroll(Student studentToLeave)
+    {
+        if (students.Contains(studentToLeave))
+        {
+            students.Remove(studentToLeave);
+            Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
+            return true;
         }
+        else
+        {
+            Console.WriteLine("Det finns inga lediga platser. ");
+            return false;
+        }
+    }
+    public void Rollcall()
+    {
+        
 
 
-
-      
-      
-      
-      
-      
         
     }
+
 
 
 

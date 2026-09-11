@@ -52,6 +52,7 @@ class Student(string name)
     // LeaveCourse är själva funktionen. (Course coursesToLeave) är indata.
     public void LeaveCourse(Course coursesToLeave)
     {
+        
         // Här kontrolleras if satsen om kursen fins innan den raderas.
         if (courses.Contains(coursesToLeave))
         {
