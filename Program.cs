@@ -25,5 +25,5 @@ aldo.ScheduleCourse(); //Skriver ut vilka kursen den studerande går.
 
 
 programmering.RollCall(); // Skriver ut en lista på dem som studerar i kursen.
-Console.WriteLine(programmering); // Visar hur många platser är upptagna eller tillgängliga.
+//Console.WriteLine(programmering); // Visar hur många platser är upptagna eller tillgängliga.
 
