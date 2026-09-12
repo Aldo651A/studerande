@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 // för att skicka in namnet så måste detta göras genon en textsträng.
 class Student(string name)
 {    
-    // Det vi gör här är att ge koden åtkomst för att läsa och ändra värdet.
-    // och detta är fullt synligt så länge vi använder public motsatsen är private
-    // String bärettar att detta kopmmer att vara en textsträng
-    // Tills sist så sparas namnet på studenten. Jag kan skriva ut namnet.
+    //Public möjliggör för andra klaser att läsa/ändra värdet.
+    //Motsatsen til public är privat. String iformerar att det är en textsträng
+    //Man tar emott ett värde "name" från konstruktören och sparar den i fältet "Name"
+    // Raden här under skapar en bro mellam primary conductor och resten av programmet.
     public string Name = name;
     
 

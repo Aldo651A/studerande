@@ -1,56 +1,107 @@
 using System.ComponentModel;
+using System.Formats.Tar;
 // Detta kallas för primary constructer och här skapar vi Course.
 // För att skicka in namne gör vi detta me string och antalet platser med int.
-// eftersom int kontrolerar antal.
+// eftersom int kontrollerar antal.
 class Course(string name, int maxSeats)
 {
+    // Det vi gör här är att ge koden åtkomst för att läsa och ändra värdet.
+    // och detta är fullt synligt så länge vi använder public motsatsen är private
+    // Vi får också infon att det är en teststräng
     public string Name = name;
+
+    // Här kan vi bestämma antalet platser i en kurs.
     public int MaxSeats = maxSeats;
+
+    // Här har vi en lista med olika studenter. Just nu är den tom.
+    // Men denna lista lik kurslitan kommer att fyllas på allt efterhand.
     public List<Student> students = [];
 
+    // Här kan vi lägga till en student utan att använda JoinCourse
+    // och detta gör vi genom att använda funktionen Enroll.
     public bool Enroll(Student studentToEnroll)
-    {
+
+    {   // Här kontrolleras antalet lediga platser eller om klassen är fult.
+        // Sedan skickas en meddelande om jus detta.
         if (students.Count < MaxSeats)
         {
+            // Här sköter couse klassen själv att lägga till studenten
+            // på så sätt behöve man inte gå via studentens JoinCourse metod.
             students.Add(studentToEnroll);
-            Console.WriteLine("Studenten är nu registrerad ");
+            
+            //Här skyddar vi oss mot dubbel inskrivning, sammtidigt som Course
+            // kontrollerar studentens lista. Utropstekenet kollar att studenten
+            // inte har kursen i sin lista.Detta är också ett skydd mot logiska fel.
+            if (!studentToEnroll.courses.Contains(this))
+            {
+                // Om allting är som det ska vara då ska kursen veta om studenten.
+                // Och studenten ska veta om kursen och listorna måste uppdateras.
+                // Sedan ska studenten läggas till också.
+                studentToEnroll.courses.Add(this);
+            }
+
+            //Medelar i skärmen att studenten är registrerad  
+            // alltsså informerar användaren
+            // och returnerar ett värde att registreringen lyckades.
+            Console.WriteLine("Studenten är nu registrerad. ");
             return true;
         }
         else
-        {
+        {   //Om if ovanför inte är sant då meddelas detta till användaren
+            // att det inte gick bra. Även här returners ett värde i form av att
+            // registeringen inte lyckades.
             Console.WriteLine("Tyvärr så finns det inga lediga platser. ");
             return false;
         }  
     }
+
+    //Här kan vi ta bort en Student utan att använda metoden UnEnroll
+    // Utan att använda hela studentToLeave proceduren.
     public bool UnEnroll(Student studentToLeave)
     {
+        // Här kontrolleras att studenten finns i listan och att studenten  
+        // inte skriv ut flera gånger
+        // Detta är ett skydd för att förhindra logiska fel
         if (students.Contains(studentToLeave))
         {
+            // Om allting är som det ska så avregistreras studenten 
+            // från kursen. Både kursen och studentes listor uppdateras.
+            // Nu är inte listorn sammanlänkade.
             students.Remove(studentToLeave);
+
+            //Kontrollerar båda listorna att studenten finns i kursen lista
+            // och att kursen finns i studentens lista
+            if (studentToLeave.courses.Contains(this))
+            {
+                // Tar bort studenten från kursen och listan
+                studentToLeave.courses.Remove(this);
+            }
+
+            //Meddelar och infomerar användaren vad som har skett
+            // Samt returnerar ett värde att utskrivningen lyckades
             Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
             return true;
+            
         }
         else
-        {
-            Console.WriteLine("Det finns inga lediga platser. ");
+        {   
+            //Meddelar och infomerar användaren vad som har skett
+            // Samt returnerar ett värde att registreringen misslyckades
+            Console.WriteLine("Studenten är ej registrerad i denna kurs. ");
             return false;
         }
     }
-    public void Rollcall()
+    public void RollCall()
     {
-        
-
-
-        
+        foreach (Student s in students)
+        {
+            Console.WriteLine(s);
+        }
     }
-
-
-
-
-
-
-
-
+    public override string ToString()
+    {
+        return $"{Name}, ({students.Count} / {MaxSeats} platser)";
+    }
 
 
 }
