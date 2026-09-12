@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Formats.Tar;
 // Detta kallas för primary constructer och här skapar vi Course.
 // För att skicka in namne gör vi detta me string och antalet platser med int.

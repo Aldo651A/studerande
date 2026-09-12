@@ -34,9 +34,7 @@ class Student(string name)
             // om inte false
             if (fickViPlats)
             {  
-                // Om svaret är true då kommer kursen att läggas till i 
-                // studentens lista. Samt får grattis meddelandet.
-                courses.Add(coursesToJoin);
+                // Skriver ut i konsolens så att användaren ser vad som har hämnt.
                 Console.WriteLine("Grattis, du är intagen och inregistrerad. ");
             }
             else
