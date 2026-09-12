@@ -91,17 +91,30 @@ class Course(string name, int maxSeats)
             return false;
         }
     }
+    // skriver ut alla studerande i kursen
     public void RollCall()
-    {
+    {   
+        //Det här en loopsom undersöker listan student
+        // Den tar en studnet i taget  i det som kallas s.
         foreach (Student s in students)
         {
+            // Här skriver man ut studenten s i skärmen/konsolen
             Console.WriteLine(s);
         }
-    }
+    }   
+    // Metoden kan läsas och öndra av andra klasser
+    // Eftersom ToSring har en fast metod eller standars så säger vi till 
+    // den att strunta i den och gör som jag vill istället.
+    // Eftersom vi inte har void så vill vi returnera ett värde textsträngar.
     public override string ToString()
     {
+        // Här har vi något som kallas för Sränginterpolering $ och gör
+        // så att vi kan använda vanlig text med variabler.
+        // Här kommer det att skriva ur i konsolen namet på kursen 
+        // antalet studenter som är registrerade och visa antalet platser 
+        // kursen har total allt detta kommer användaren kunna se.
         return $"{Name}, ({students.Count} / {MaxSeats} platser)";
     }
 
-
 }
+
