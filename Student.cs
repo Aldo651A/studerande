@@ -35,7 +35,7 @@ class Student(string name)
             if (fickViPlats)
             {  
                 // Skriver ut i konsolens så att användaren ser vad som har hämnt.
-                Console.WriteLine("Grattis, du är intagen och inregistrerad. ");
+                Console.WriteLine("Grattis, du är antagen ");
             }
             else
             {
