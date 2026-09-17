@@ -1,6 +1,4 @@
-﻿Console.Clear();
-
-Course programmering = new Course("C# Grundkurs", 5);
+﻿Course programmering = new Course("C# Grundkurs", 5);
 Course biologi = new Course("Biologi 1", 3);
 
 Student aldo = new Student("Aldo");
