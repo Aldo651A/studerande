@@ -18,7 +18,6 @@ class Course(string name, int maxSeats)
     // Här kan vi lägga till en student utan att använda JoinCourse
     // och detta gör vi genom att använda funktionen Enroll.
     public bool Enroll(Student studentToEnroll)
-
     {   // Här kontrolleras antalet lediga platser eller om klassen är fult.
         // Sedan skickas en meddelande om jus detta.
         /* THOMAS ALTERNATIV EARLY RETURN ISTÄLLET FÖR NESTED IF
@@ -74,8 +73,8 @@ class Course(string name, int maxSeats)
             Console.WriteLine("Tyvärr så finns det inga lediga platser. ");
             return false;
         }  
+    
     }
-
     //Här kan vi ta bort en Student utan att använda metoden UnEnroll
     // Utan att använda hela studentToLeave proceduren.
     public bool UnEnroll(Student studentToLeave)
@@ -95,14 +94,21 @@ class Course(string name, int maxSeats)
             if (studentToLeave.courses.Contains(this))
             {
                 // Tar bort studenten från kursen och listan
+                students.Remove(studentToLeave);
                 studentToLeave.courses.Remove(this);
-            }
-
-            //Meddelar och infomerar användaren vad som har skett
-            // Samt returnerar ett värde att utskrivningen lyckades
-            Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
-            return true;
             
+                //Meddelar och infomerar användaren vad som har skett
+                // Samt returnerar ett värde att utskrivningen lyckades
+                Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Studente har redan avregistrerat sig");
+                return false;
+            }
+       
+       
         }
         else
         {   
