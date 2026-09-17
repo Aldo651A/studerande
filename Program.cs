@@ -1,7 +1,8 @@
-﻿using System.Runtime.InteropServices;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 Course programmering = new Course("C# Grundkurs", 5);
-Course Biology = new Course("Biologi 1", 3);
+Course biologi = new Course("Biologi 1", 3);
 
 Student aldo = new Student("Aldo");
 Student ulf = new Student("Ulf");
@@ -12,7 +13,7 @@ programmering.Enroll(aldo); // Kursen lägg till mig
 ulf.JoinCourse(programmering); // Studenten lägger till sig genom student
 programmering.Enroll(aldo); // Testar dubblett.
 
-Console.WriteLine("Testar max antalet studenter på kursen");
+Console.WriteLine("\nTestar max antalet studenter på kursen");
 Student anna = new Student("Anna"); 
 Student roger = new Student("Roger");
 Student lisa = new Student("Lisa");
@@ -21,8 +22,25 @@ programmering.Enroll(roger); // kursen lägger till Roger.
 programmering.Enroll(lisa);  // kursen lägger till Lisa
 programmering.Enroll(mia);   // Det finns inga plater ledig 
 
-Console.WriteLine("Tar bort student som inte var anmäld systemet ska inte krascha");
+Console.WriteLine("\nTar bort student som inte var anmäld systemet ska inte krascha");
 programmering.UnEnroll(mia);
 ulf.LeaveCourse(programmering); // Ulf slutar kursen 
 
+Console.WriteLine("\nOm man kan gå med i kursen biologi");
+biologi.Enroll(anna);  // kursen läger til Anna.
+biologi.Enroll(roger); // kursen lägger till Roger.
+biologi.Enroll(lisa);
+
+
+Console.WriteLine("\nkontrollerar vilka kurser lisa och aldo går i");
+aldo.ScheduleCourse();
+lisa.ScheduleCourse();
+
+Console.WriteLine("\n skriver ut alla studerande i kurserna programmering ");
+programmering.RollCall();
+Console.WriteLine(programmering);
+
+Console.WriteLine("\n skriver ut studerande i biologi");
+biologi.RollCall();
+Console.WriteLine(biologi);
 
