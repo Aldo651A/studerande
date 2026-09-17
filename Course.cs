@@ -82,33 +82,17 @@ class Course(string name, int maxSeats)
         // Här kontrolleras att studenten finns i listan och att studenten  
         // inte skriv ut flera gånger
         // Detta är ett skydd för att förhindra logiska fel
-        if (students.Contains(studentToLeave))
+        if (students.Contains(studentToLeave) || studentToLeave.courses.Contains(this))
         {
-            // Om allting är som det ska så avregistreras studenten 
-            // från kursen. Både kursen och studentes listor uppdateras.
-            // Nu är inte listorn sammanlänkade.
-            students.Remove(studentToLeave);
-
-            //Kontrollerar båda listorna att studenten finns i kursen lista
-            // och att kursen finns i studentens lista
-            if (studentToLeave.courses.Contains(this))
-            {
-                // Tar bort studenten från kursen och listan
-                students.Remove(studentToLeave);
-                studentToLeave.courses.Remove(this);
             
-                //Meddelar och infomerar användaren vad som har skett
-                // Samt returnerar ett värde att utskrivningen lyckades
-                Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Studente har redan avregistrerat sig");
-                return false;
-            }
-       
-       
+            // Tar bort studenten från kursenlista
+            students.Remove(studentToLeave);
+            studentToLeave.courses.Remove(this);
+            
+            //Meddelar och infomerar användaren vad som har skett
+            // Samt returnerar ett värde att utskrivningen lyckades
+            Console.WriteLine("Tyvärr så slutade en student. En plats är ledig. ");
+            return true;    
         }
         else
         {   
