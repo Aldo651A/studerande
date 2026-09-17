@@ -39,9 +39,6 @@ class Course(string name, int maxSeats)
         return true;*/
         if (students.Count < MaxSeats)
         {
-            // Här sköter couse klassen själv att lägga till studenten
-            // på så sätt behöve man inte gå via studentens JoinCourse metod.
-           
             //Här skyddar vi oss mot dubbel inskrivning, sammtidigt som Course
             // kontrollerar studentens lista. Utropstekenet kollar att studenten
             // inte har kursen i sin lista.Detta är också ett skydd mot logiska fel.
@@ -54,14 +51,14 @@ class Course(string name, int maxSeats)
                 studentToEnroll.courses.Add(this);
             
 
-                //Medelar i skärmen att studenten är registrerad  
+                //Meddelar i skärmen att studenten är registrerad  
                 // alltsså informerar användaren
                 // och returnerar ett värde att registreringen lyckades.
                 Console.WriteLine("Studenten är nu registrerad. ");
                 return true;
             }
             else
-            {
+            {   //Meddelar användaren att studenten är redan är registrerad
                 Console.WriteLine("Studenten är redan registrerad");
                 return false;
             }
@@ -75,8 +72,9 @@ class Course(string name, int maxSeats)
         }  
     
     }
-    //Här kan vi ta bort en Student utan att använda metoden UnEnroll
-    // Utan att använda hela studentToLeave proceduren.
+    //Här kontrollerar vi om studenten är registrerad i kursen eller om 
+    // kursen finns i studentens lista. Om registeringen är kvar på 
+    // någon lista så rensar vi den.+
     public bool UnEnroll(Student studentToLeave)
     {
         // Här kontrolleras att studenten finns i listan och att studenten  
@@ -113,8 +111,8 @@ class Course(string name, int maxSeats)
             Console.WriteLine(s);
         }
     }   
-    // Metoden kan läsas och öndra av andra klasser
-    // Eftersom ToSring har en fast metod eller standars så säger vi till 
+    // Metoden kan läsas och av andra klasser
+    // Eftersom ToString har en fast metod eller standars så säger vi till 
     // den att strunta i den och gör som jag vill istället.
     // Eftersom vi inte har void så vill vi returnera ett värde textsträngar.
     public override string ToString()
