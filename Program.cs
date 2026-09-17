@@ -36,11 +36,15 @@ Console.WriteLine("\nkontrollerar vilka kurser lisa och aldo går i");
 aldo.ScheduleCourse();
 lisa.ScheduleCourse();
 
-Console.WriteLine("\n skriver ut alla studerande i kurserna programmering ");
+Console.WriteLine("\nskriver ut alla studerande i kurserna programmering ");
 programmering.RollCall();
 Console.WriteLine(programmering);
 
-Console.WriteLine("\n skriver ut studerande i biologi");
+Console.WriteLine("\nskriver ut studerande i biologi");
 biologi.RollCall();
 Console.WriteLine(biologi);
 
+Console.WriteLine($"\nStudentens namn är {aldo}");
+
+
+Console.WriteLine(aldo);
