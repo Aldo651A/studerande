@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 //Här skapar vi en student och detta kallas för primär kostruktör
 // för att skicka in namnet så måste detta göras genon en textsträng.
 class Student(string name)

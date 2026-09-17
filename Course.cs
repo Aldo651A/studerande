@@ -1,4 +1,3 @@
-using System.Formats.Tar;
 // Detta kallas för primary constructer och här skapar vi Course.
 // För att skicka in namne gör vi detta me string och antalet platser med int.
 // eftersom int kontrollerar antal.
@@ -22,12 +21,28 @@ class Course(string name, int maxSeats)
 
     {   // Här kontrolleras antalet lediga platser eller om klassen är fult.
         // Sedan skickas en meddelande om jus detta.
+        /* THOMAS ALTERNATIV EARLY RETURN ISTÄLLET FÖR NESTED IF
+           VI VÄNDER PÅ VILLKORSLOGIKEN
+           - om kursen redan är full -> Early return
+           - om studenter redan är med -> Early return
+        if(students.Count >= MaxSeats)
+        {
+            Console.WriteLine("Kursen redan full");
+            return false;
+        }
+
+        if (studentToEnroll.courses.Contains(this))){
+            Console.WriteLine("Student already enrolled");
+            return false;
+        }
+        students.Add(studentToEnroll);
+        studentToEnroll.courses.Add(this);
+        return true;*/
         if (students.Count < MaxSeats)
         {
             // Här sköter couse klassen själv att lägga till studenten
             // på så sätt behöve man inte gå via studentens JoinCourse metod.
-            students.Add(studentToEnroll);
-            
+           
             //Här skyddar vi oss mot dubbel inskrivning, sammtidigt som Course
             // kontrollerar studentens lista. Utropstekenet kollar att studenten
             // inte har kursen i sin lista.Detta är också ett skydd mot logiska fel.
@@ -36,14 +51,21 @@ class Course(string name, int maxSeats)
                 // Om allting är som det ska vara då ska kursen veta om studenten.
                 // Och studenten ska veta om kursen och listorna måste uppdateras.
                 // Sedan ska studenten läggas till också.
+                students.Add(studentToEnroll);
                 studentToEnroll.courses.Add(this);
-            }
+            
 
-            //Medelar i skärmen att studenten är registrerad  
-            // alltsså informerar användaren
-            // och returnerar ett värde att registreringen lyckades.
-            Console.WriteLine("Studenten är nu registrerad. ");
-            return true;
+                //Medelar i skärmen att studenten är registrerad  
+                // alltsså informerar användaren
+                // och returnerar ett värde att registreringen lyckades.
+                Console.WriteLine("Studenten är nu registrerad. ");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Studenten är redan registrerad");
+                return false;
+            }
         }
         else
         {   //Om if ovanför inte är sant då meddelas detta till användaren
